@@ -201,3 +201,30 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 });
+
+/*-----------------------------------*\
+ * #SCROLL REVEAL ANIMATION LOOP
+\*-----------------------------------*/
+
+const revealElements = document.querySelectorAll(".reveal");
+
+const scrollReveal = function () {
+  for (let i = 0; i < revealElements.length; i++) {
+    
+    // Height of the window
+    const windowHeight = window.innerHeight;
+    // Distance from top of viewport to the element
+    const elementTop = revealElements[i].getBoundingClientRect().top;
+    // How much of the element must be visible before triggering (100px)
+    const elementVisible = 100; 
+
+    if (elementTop < windowHeight - elementVisible) {
+      revealElements[i].classList.add("active");
+    }
+  }
+}
+
+// Listen for scroll events
+window.addEventListener("scroll", scrollReveal);
+// Trigger once on load to show elements already on screen
+window.addEventListener("load", scrollReveal);

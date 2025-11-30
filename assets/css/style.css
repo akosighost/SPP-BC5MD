@@ -1638,28 +1638,20 @@ body.active { overflow: hidden; }
    CLOSE THE PREVIOUS MEDIA QUERY FIRST
    (This fixes the issue where styles only worked on big screens)
    ====================================================== */
+/* Close the 1200px Media Query */
 } 
 
 /*-----------------------------------*\
  * #REVIEW SECTION
 \*-----------------------------------*/
 
-/*-----------------------------------*\
- * #REVIEW SECTION (Masonry Fix)
-\*-----------------------------------*/
-
 .review-grid {
-  /* Remove display: grid */
   display: block; 
-  
-  /* Use Columns instead */
   column-count: 1; 
   column-gap: 30px;
-  
   margin-top: 20px;
 }
 
-/* Responsive: 2 Columns on Tablets/Desktops */
 @media (min-width: 768px) {
   .review-grid {
     column-count: 2;
@@ -1674,12 +1666,10 @@ body.active { overflow: hidden; }
   transition: var(--transition-1);
   position: relative;
   overflow: hidden;
-  
-  /* MASONRY FIXES: */
-  display: inline-block; /* Makes card behave like text so it flows into columns */
-  width: 100%;           /* Ensures it fills the column width */
-  margin-bottom: 30px;   /* Adds space below the card */
-  break-inside: avoid;   /* Prevents the card from being cut in half between columns */
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 30px;
+  break-inside: avoid;
 }
 
 .review-card:hover {
@@ -1688,7 +1678,7 @@ body.active { overflow: hidden; }
   background: var(--gunmetal-2);
 }
 
-/* Header (Avatar + Name) */
+/* Review Header & Avatar */
 .review-header {
   display: flex;
   align-items: center;
@@ -1707,7 +1697,7 @@ body.active { overflow: hidden; }
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-shrink: 0; /* Prevents avatar from squishing */
+  flex-shrink: 0;
 }
 
 .review-header .avatar img {
@@ -1721,6 +1711,7 @@ body.active { overflow: hidden; }
   color: var(--gainsboro);
 }
 
+/* Review Text Content */
 .user-info .username {
   color: var(--white);
   font-size: var(--fs-7);
@@ -1734,32 +1725,20 @@ body.active { overflow: hidden; }
   text-transform: uppercase;
 }
 
-/* ------------------------------------------------
-   THE ANIMATION FIX
-   We use 'display: block' to override the old code
-   and 'max-height' for the slide effect.
------------------------------------------------- */
 .review-text {
-  display: block; /* Important: Resets any flexbox/line-clamp issues */
+  display: block;
   color: var(--gainsboro);
   font-size: var(--fs-9);
   line-height: 1.6em; 
   font-style: italic;
-  
-  /* Start collapsed */
-  max-height: 4.8em; /* 3 lines x 1.6em */
+  max-height: 4.8em; 
   overflow: hidden;
-  
-  /* The Slide Animation */
   transition: max-height 0.5s ease-in-out;
-  
-  /* Fade out effect at bottom */
   mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
 
 .review-text.expanded {
-  /* Expand to full height */
   max-height: 1000px; 
   mask-image: none;
   -webkit-mask-image: none;
@@ -1767,7 +1746,7 @@ body.active { overflow: hidden; }
 
 /* See More Button */
 .see-more-btn {
-  display: none; /* JS will show this if needed */
+  display: none; 
   margin-top: 10px;
   font-size: 13px;
   font-weight: 700;
@@ -1783,7 +1762,7 @@ body.active { overflow: hidden; }
   color: var(--white);
 }
 
-/* Colored Borders */
+/* Card Colors */
 .card-blue { border-top: 4px solid #3b82f6; }
 .card-blue .review-topic { color: #60a5fa; }
 .review-card.card-blue:hover { border-color: #3b82f6; box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3); }
@@ -1799,8 +1778,7 @@ body.active { overflow: hidden; }
 .card-yellow { border-top: 4px solid var(--citrine); }
 .review-card.card-yellow:hover { border-color: var(--citrine); box-shadow: 0 10px 30px rgba(228, 216, 4, 0.3); }
 
-
-/* Ratings & Stats */
+/* Rating Stars & Filter Buttons */
 .rating-wrapper {
   display: flex;
   gap: 2px;
@@ -1815,7 +1793,7 @@ body.active { overflow: hidden; }
   border-color: var(--citrine);
 }
 
-/* RATING BOX (The Progress Bars) */
+/* Rating Box (Progress Bars) */
 .rating-box {
   background: var(--gunmetal-1);
   padding: 30px;
@@ -1909,4 +1887,36 @@ body.active { overflow: hidden; }
     flex-direction: column;
     gap: 20px;
   }
+}
+
+/* Service Banner Override (To fix download button visibility) */
+.service-banner {
+  /* We remove overflow: hidden here so the button can hang out */
+  position: relative;
+  margin-bottom: 50px;
+  max-width: 500px;
+  margin-inline: auto;
+  width: 100%;
+  border-radius: 20px; 
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); 
+}
+
+.service-banner img { 
+  width: 100%; 
+  border-radius: 20px; 
+}
+
+/*-----------------------------------*\
+ * #SCROLL REVEAL ANIMATION
+\*-----------------------------------*/
+
+.reveal {
+  opacity: 0;
+  transform: translateY(50px); 
+  transition: all 0.8s ease-out; 
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0); 
 }
