@@ -685,7 +685,7 @@ if (loginForm) {
   loginForm.addEventListener('submit', function(e) {
     e.preventDefault(); // Stop page reload
     
-    // Simulate logging in...
+    // Simulate Fake signing in...
     const btn = this.querySelector('button');
     const originalText = btn.textContent;
     
