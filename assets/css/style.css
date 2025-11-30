@@ -535,6 +535,11 @@ body.active { overflow: hidden; }
 .hero-title > strong { color: var(--citrine); }
 
 
+/* Fix for the wide Hero Button */
+.hero .btn {
+  width: max-content; /* Shrinks the box to fit the text */
+}
+
 
 
 
