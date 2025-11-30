@@ -66,7 +66,8 @@ document.addEventListener('DOMContentLoaded', function() {
      1. CALCULATE AVERAGE RATING & PROGRESS BARS
      ====================================================== */
   function calculateAverageRating() {
-    const cards = document.querySelectorAll('.review-card');
+    // 1. Select ONLY cards that actually have data inside
+    const cards = document.querySelectorAll('.review-card[data-rating]');
     const totalCards = cards.length;
     
     // Reset Counts
@@ -75,19 +76,33 @@ document.addEventListener('DOMContentLoaded', function() {
   
     // Loop through cards to gather data
     cards.forEach(card => {
-      // Get rating safely
       const ratingAttr = card.getAttribute('data-rating');
       const rating = ratingAttr ? parseFloat(ratingAttr) : 0;
       
       if (!isNaN(rating) && rating > 0) {
         totalScore += rating;
         
-        // Count specific stars (Rounding ensures 4.5 goes to 5 bucket or 4 bucket as you prefer)
         let roundedRating = Math.round(rating); 
         if(roundedRating < 1) roundedRating = 1;
         if(roundedRating > 5) roundedRating = 5;
         
         starCounts[roundedRating]++;
+
+        // Update individual card stars to match data-rating
+        const starContainer = card.querySelector('.rating-wrapper');
+        if (starContainer) {
+            let cardStarHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                if (rating >= i) {
+                    cardStarHTML += '<ion-icon name="star"></ion-icon>';
+                } else if (rating >= i - 0.5) {
+                    cardStarHTML += '<ion-icon name="star-half-outline"></ion-icon>';
+                } else {
+                    cardStarHTML += '<ion-icon name="star-outline"></ion-icon>';
+                }
+            }
+            starContainer.innerHTML = cardStarHTML;
+        }
       }
     });
   
@@ -97,20 +112,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalCountElement = document.getElementById('total-reviews-count');
   
     if (avgScoreElement && totalCards > 0) {
-      const average = (totalScore / totalCards).toFixed(1);
+      const average = (totalScore / totalCards).toFixed(1); // e.g. "4.5"
       avgScoreElement.textContent = average;
       totalCountElement.textContent = `${totalCards} Ratings`;
   
-      // Generate Stars for Average
+      // --- NEW: LOGIC FOR HALF STARS ---
       let starHTML = '';
       for (let i = 1; i <= 5; i++) {
-        if (i <= Math.round(average)) {
+        if (average >= i) {
+          // Full Star (e.g., if avg is 4.5, i=1,2,3,4 are full)
           starHTML += '<ion-icon name="star"></ion-icon>';
+        } else if (average >= i - 0.5) {
+          // Half Star (e.g., if avg is 4.5, i=5 is half)
+          starHTML += '<ion-icon name="star-half-outline"></ion-icon>';
         } else {
+          // Empty Star
           starHTML += '<ion-icon name="star-outline"></ion-icon>';
         }
       }
       avgStarsElement.innerHTML = starHTML;
+      // ---------------------------------
+
     } else if (avgScoreElement) {
       avgScoreElement.textContent = "0.0";
       totalCountElement.textContent = "No Ratings";
@@ -269,10 +291,6 @@ function loadExternalReviews() {
 
 // Run this function when the page loads
 window.addEventListener('load', loadExternalReviews);
-
-/*-----------------------------------*\
- * #REVIEW POPUP MODAL LOGIC
-\*-----------------------------------*/
 
 /*-----------------------------------*\
  * #REVIEW POPUP MODAL LOGIC
