@@ -572,9 +572,135 @@ if (memModal) {
   });
 }
 
+/*-----------------------------------*\
+ * #FOOTER LINKS MODAL LOGIC
+\*-----------------------------------*/
+
+// Data for the modals
+const footerContent = {
+  faq: {
+    title: "Frequently Asked Questions",
+    text: `Q: Is Filmlane free?\nA: Yes, Filmlane is free to use for browsing movie reviews.\n\nQ: How do I download movies?\nA: Click the download button on the specific movie page (if available).\n\nQ: Can I submit a review?\nA: Currently, reviews are curated by our team.`
+  },
+  help: {
+    title: "Help Center",
+    text: `Need assistance? Our support team is here to help.\n\nEmail: aisat.natividad@gmail.com\nPhone: +639924560138\nHours: Mon-Fri, 9am - 5pm EST`
+  },
+  terms: {
+    title: "Terms of Use",
+    text: `1. Acceptance of Terms\nBy accessing this website, you agree to be bound by these terms.\n\n2. Use License\nPermission is granted to temporarily download one copy of the materials for personal, non-commercial viewing only.\n\n3. Disclaimer\nThe materials on Filmlane's website are provided on an 'as is' basis.`
+  },
+  privacy: {
+    title: "Privacy Policy",
+    text: `Your privacy is important to us.\n\n1. Information Collection\nWe only collect information necessary to provide our services.\n\n2. Cookies\nWe use cookies to improve your browsing experience.\n\n3. Data Protection\nWe do not sell your personal data to third parties.`
+  }
+};
+
+// Select Elements
+const infoModal = document.getElementById('info-modal-overlay');
+const infoTitle = document.getElementById('info-modal-title');
+const infoText = document.getElementById('info-modal-text');
+const closeInfoBtn = document.getElementById('close-info-btn');
+
+// Function to open Info Modal
+function openInfoModal(type) {
+  const content = footerContent[type];
+  if (content) {
+    infoTitle.textContent = content.title;
+    infoText.textContent = content.text;
+    infoModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+// Event Listeners for Links
+document.getElementById('faq-link')?.addEventListener('click', (e) => { e.preventDefault(); openInfoModal('faq'); });
+document.getElementById('help-link')?.addEventListener('click', (e) => { e.preventDefault(); openInfoModal('help'); });
+document.getElementById('terms-link')?.addEventListener('click', (e) => { e.preventDefault(); openInfoModal('terms'); });
+document.getElementById('privacy-link')?.addEventListener('click', (e) => { e.preventDefault(); openInfoModal('privacy'); });
+
+// Close Logic
+if (closeInfoBtn) {
+  closeInfoBtn.addEventListener('click', () => {
+    infoModal.classList.remove('active');
+    document.body.style.overflow = 'visible';
+  });
+}
+
+if (infoModal) {
+  infoModal.addEventListener('click', (e) => {
+    if (e.target === infoModal) {
+      infoModal.classList.remove('active');
+      document.body.style.overflow = 'visible';
+    }
+  });
+}
+
+
+
 
 // Run on load
 window.addEventListener('load', initReviewActions);
+
+
+/*-----------------------------------*\
+ * #SIGN IN POPUP LOGIC
+\*-----------------------------------*/
+
+// 1. Select Elements
+const signinBtn = document.getElementById('signin-btn');
+const signinModal = document.getElementById('signin-modal-overlay');
+const closeSigninBtn = document.getElementById('close-signin-btn');
+const loginForm = document.getElementById('login-form');
+
+// 2. Open Modal Function
+if (signinBtn && signinModal) {
+  signinBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    signinModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+}
+
+// 3. Close Modal Function
+if (closeSigninBtn) {
+  closeSigninBtn.addEventListener('click', function() {
+    signinModal.classList.remove('active');
+    document.body.style.overflow = 'visible';
+  });
+}
+
+// 4. Close on background click
+if (signinModal) {
+  signinModal.addEventListener('click', function(e) {
+    if (e.target === signinModal) {
+      signinModal.classList.remove('active');
+      document.body.style.overflow = 'visible';
+    }
+  });
+}
+
+// 5. Handle Form Submit (Simulation)
+if (loginForm) {
+  loginForm.addEventListener('submit', function(e) {
+    e.preventDefault(); // Stop page reload
+    
+    // Simulate logging in...
+    const btn = this.querySelector('button');
+    const originalText = btn.textContent;
+    
+    btn.textContent = "Signing In...";
+    btn.style.opacity = "0.7";
+    
+    setTimeout(() => {
+      alert("Successfully Signed In! (Demo)");
+      btn.textContent = originalText;
+      btn.style.opacity = "1";
+      signinModal.classList.remove('active');
+      document.body.style.overflow = 'visible';
+    }, 1500);
+  });
+}
 
 
 
@@ -584,14 +710,14 @@ window.addEventListener('load', initReviewActions);
 
 function initDownloadCheck() {
   // Select the service button (and any other download buttons you want to check)
-  const downloadBtns = document.querySelectorAll('.service-btn, .download-btn');
+  const downloadBtns = document.querySelectorAll('.service-btn, .download-btn, .social-link');
 
   downloadBtns.forEach(btn => {
     btn.addEventListener('click', function(e) {
       const link = this.getAttribute('href');
 
-      // Check if the link is missing, empty, or just a placeholder '#'
-      if (!link || link === '#' || link === 'javascript:void(0)') {
+      // Check if the link is missing, empty, a placeholder '#', a javascript void, or a known placeholder facebook URL
+      if (!link || link === '#' || link === 'javascript:void(0)' || link === 'https://www.facebook.com/aisatcollegedasmaph') {
         e.preventDefault(); // Stop the browser from doing anything
         alert("No link available"); // Show the popup message
       }
@@ -601,3 +727,4 @@ function initDownloadCheck() {
 
 // Run on load
 window.addEventListener('load', initDownloadCheck);
+

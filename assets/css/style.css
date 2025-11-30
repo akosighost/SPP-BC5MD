@@ -2296,3 +2296,67 @@ body.active { overflow: hidden; }
   color: var(--citrine);
   font-weight: 500;
 }
+
+/*-----------------------------------*\
+ * #SIGN IN MODAL STYLES
+\*-----------------------------------*/
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-group {
+  position: relative;
+}
+
+.login-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 15px 15px 15px 45px; /* Space for icon */
+  border-radius: 6px;
+  color: var(--white);
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.login-input:focus {
+  border-color: var(--citrine);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.input-group ion-icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: var(--gainsboro);
+  font-size: 18px;
+}
+
+/*-----------------------------------*\
+ * #SIGN IN BUTTON FIX
+\*-----------------------------------*/
+
+.signin-submit-btn {
+  background: var(--citrine);
+  color: var(--rich-black-fogra-29);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px solid var(--citrine);
+  padding: 15px 34px;
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 10px;
+  transition: var(--transition-1);
+}
+
+.signin-submit-btn:hover {
+  background: transparent;
+  color: var(--citrine);
+}

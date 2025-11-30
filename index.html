@@ -59,7 +59,8 @@
           </select>
         </div>
 
-        <button class="btn btn-primary">Sign in</button>
+        <!-- Added id="signin-btn" -->
+         <button class="btn btn-primary" id="signin-btn">Sign in</button>
 
       </div>
 
@@ -96,7 +97,7 @@
           </li>
 
           <li>
-            <a href="#" class="navbar-link" id="members-link">About Us</a>
+            <a href="#" class="navbar-link" id="members-link">About Us / Members</a>
           </li>
         </ul>
 
@@ -272,8 +273,39 @@
 
       </div>
     </div>
+    
 
     <div class="review-grid">
+      <div class="review-card card-blue" data-rating="5" data-review-file="princes.txt">
+        <div class="review-header">
+          <div class="avatar"><img src="./assets/review-photos/princes.jpg" alt="User"></div>
+          <div class="user-info">
+            <h3 class="username">Princes</h3>
+            <div class="rating-wrapper">
+              <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              
+            </div>
+          </div>
+        </div>
+        <p class="review-text">Loading review...</p>
+        <div class="card-footer">
+          <button class="see-more-btn">See More</button>
+          <div class="card-actions">
+            <button class="action-btn expand-btn" title="Read Full Review">
+              <ion-icon name="expand-outline"></ion-icon>
+            </button>
+            <button class="action-btn copy-btn" title="Copy Review">
+              <ion-icon name="copy-outline"></ion-icon>
+            </button>
+            <button class="action-btn share-btn" title="Share Review">
+              <ion-icon name="share-social-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div class="review-card card-blue" data-rating="4" data-review-file="yesha.txt">
         <div class="review-header">
           <div class="avatar"><img src="./assets/review-photos/yesha.jpg" alt="User"></div>
@@ -334,7 +366,7 @@
         </div>
       </div>
 
-      <div class="review-card card-blue" data-rating="1" data-review-file="king.txt">
+      <div class="review-card card-blue" data-rating="3" data-review-file="king.txt">
         <div class="review-header">
           <div class="avatar"><img src="./assets/review-photos/king.jpg" alt="User"></div>
           <div class="user-info">
@@ -516,41 +548,11 @@
       </div>
 
 
-      <div class="review-card card-blue" data-rating="4.5" data-review-file="jhayr.txt">
+      <div class="review-card card-blue" data-rating="3.5" data-review-file="jhayr.txt">
         <div class="review-header">
           <div class="avatar"><img src="./assets/review-photos/jhayr.jpg" alt="User"></div>
           <div class="user-info">
             <h3 class="username">Jhayr</h3>
-            <div class="rating-wrapper">
-              <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              
-            </div>
-          </div>
-        </div>
-        <p class="review-text">Loading review...</p>
-        <div class="card-footer">
-          <button class="see-more-btn">See More</button>
-          <div class="card-actions">
-            <button class="action-btn expand-btn" title="Read Full Review">
-              <ion-icon name="expand-outline"></ion-icon>
-            </button>
-            <button class="action-btn copy-btn" title="Copy Review">
-              <ion-icon name="copy-outline"></ion-icon>
-            </button>
-            <button class="action-btn share-btn" title="Share Review">
-              <ion-icon name="share-social-outline"></ion-icon>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="review-card card-blue" data-rating="5" data-review-file="princes.txt">
-        <div class="review-header">
-          <div class="avatar"><img src="./assets/review-photos/princes.jpg" alt="User"></div>
-          <div class="user-info">
-            <h3 class="username">Princes</h3>
             <div class="rating-wrapper">
               <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
               <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
@@ -674,25 +676,10 @@
           </a>
 
           <ul class="quicklink-list">
-
-            <li>
-              <a href="#" class="quicklink-link">Faq</a>
-            </li>
-
-            <li>
-              <a href="#" class="quicklink-link">Help center</a>
-            </li>
-
-            <li>
-              <a href="#" class="quicklink-link">Terms of use</a>
-            </li>
-
-            <li>
-              <a href="#" class="quicklink-link">Privacy</a>
-            </li>
-
-          </ul>
-
+              <li><a href="#" class="quicklink-link" id="faq-link">Faq</a></li>
+              <li><a href="#" class="quicklink-link" id="help-link">Help center</a></li>
+              <li><a href="#" class="quicklink-link" id="terms-link">Terms of use</a></li>
+              <li><a href="#" class="quicklink-link" id="privacy-link">Privacy</a></li></ul>
           <ul class="social-list">
 
             <li>
@@ -923,7 +910,7 @@
 
             <div class="member-item">
               <h4>Aquino, Adrian Nico</h4>
-              <p>BC5MD</p>
+              <p>BC5MD <span class="role">| Movie Review</span></p>
             </div>
 
             <div class="member-item">
@@ -933,22 +920,22 @@
 
             <div class="member-item">
               <h4>Co, Kylene</h4>
-              <p>BC5MD</p>
+              <p>BC5MD <span class="role">| Movie Review</span></p>
             </div>
 
             <div class="member-item">
               <h4>Encio, King Acel</h4>
-              <p>BC5MD</p>
+              <p>BC5MD <span class="role">| Movie Review</span></p>
             </div>
 
             <div class="member-item">
               <h4>Escobar, Yeshalyn</h4>
-              <p>BC5MD</p>
+              <p>BC5MD <span class="role">| Movie Review</span></p>
             </div>
 
             <div class="member-item">
               <h4>Magalang, Joanna</h4>
-              <p>BC5MD</p>
+              <p>BC5MD <span class="role">| Movie Review</span></p>
             </div>
 
             <div class="member-item">
@@ -963,6 +950,87 @@
 
           </div>
         </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!--  GENERIC INFO MODAL (For Footer Links)    -->
+  <!-- ========================================= -->
+  <div class="review-modal-overlay" id="info-modal-overlay">
+    <div class="review-modal">
+      
+      <button class="close-review-btn" id="close-info-btn">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+
+      <div class="review-modal-content">
+        <div class="modal-header">
+          <div class="modal-user-details">
+            <!-- Title will be injected here -->
+            <h3 id="info-modal-title" style="font-size: 28px; color: var(--citrine); margin-bottom: 5px;">Title</h3>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <!-- Text will be injected here -->
+          <p id="info-modal-text" style="color: var(--gainsboro); line-height: 1.8; white-space: pre-line;">Content...</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ========================================= -->
+  <!--  SIGN IN MODAL (Hidden by default)        -->
+  <!-- ========================================= -->
+  <div class="review-modal-overlay" id="signin-modal-overlay">
+    <div class="review-modal" style="max-width: 400px;">
+      
+      <!-- Close Button -->
+      <button class="close-review-btn" id="close-signin-btn">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+
+      <div class="review-modal-content" style="text-align: center;">
+        
+        <!-- Logo or Header -->
+        <div style="margin-bottom: 30px;">
+          <h2 style="color: var(--white); font-size: 32px; margin-bottom: 10px;">Welcome Back</h2>
+          <p style="color: var(--gainsboro);">Please sign in to your account</p>
+        </div>
+
+        <!-- Login Form -->
+        <form class="signin-form" id="login-form">
+          
+          <div class="input-group">
+            <input type="email" placeholder="Email Address" required class="login-input">
+            <ion-icon name="mail-outline"></ion-icon>
+          </div>
+
+          <div class="input-group">
+            <input type="password" placeholder="Password" required class="login-input">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+          </div>
+
+          <div style="text-align: right; margin-bottom: 20px;">
+            <a href="#" style="color: var(--citrine); font-size: 13px;">Forgot Password?</a>
+          </div>
+
+          <button type="submit" class="signin-submit-btn">Sign In</button>
+
+        </form>
+
+        <!-- Divider -->
+        <div style="margin-block: 20px; border-top: 1px solid rgba(255,255,255,0.1);"></div>
+
+        <p style="color: var(--gainsboro); font-size: 14px;">
+          Don't have an account? 
+          <a href="#" style="color: var(--citrine); display: inline; font-weight: 600;">Sign Up</a>
+        </p>
+
       </div>
 
     </div>
