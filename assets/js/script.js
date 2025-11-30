@@ -228,3 +228,44 @@ const scrollReveal = function () {
 window.addEventListener("scroll", scrollReveal);
 // Trigger once on load to show elements already on screen
 window.addEventListener("load", scrollReveal);
+
+/*-----------------------------------*\
+ * #LOAD EXTERNAL REVIEWS
+\*-----------------------------------*/
+
+function loadExternalReviews() {
+  // 1. Find all cards that have a 'data-review-file' attribute
+  const cards = document.querySelectorAll('.review-card[data-review-file]');
+
+  cards.forEach(card => {
+    const fileName = card.getAttribute('data-review-file');
+    const textElement = card.querySelector('.review-text');
+    const btn = card.querySelector('.see-more-btn');
+
+    // 2. Fetch the text file
+    fetch(`./assets/reviews/${fileName}`)
+      .then(response => {
+        if (!response.ok) throw new Error("Review file not found");
+        return response.text();
+      })
+      .then(text => {
+        // 3. Inject the text into the HTML
+        textElement.textContent = text;
+
+        // 4. IMPORTANT: Re-check if we need the "See More" button
+        // We do this here because the text size just changed!
+        if (textElement.scrollHeight > textElement.clientHeight) {
+          btn.style.display = 'inline-block';
+        } else {
+          btn.style.display = 'none';
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        textElement.textContent = "Could not load review text.";
+      });
+  });
+}
+
+// Run this function when the page loads
+window.addEventListener('load', loadExternalReviews);
