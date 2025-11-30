@@ -2249,3 +2249,50 @@ body.active { overflow: hidden; }
     font-size: 20px; /* Smaller name text */
   }
 }
+
+/*-----------------------------------*\
+ * #MEMBERS MODAL GRID
+\*-----------------------------------*/
+
+.members-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 Column on mobile */
+  gap: 20px;
+}
+
+/* 2 Columns on Tablets/Desktop */
+@media (min-width: 600px) {
+  .members-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.member-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: 0.2s;
+}
+
+.member-item:hover {
+  border-color: var(--citrine);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.member-item h4 {
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.member-item p {
+  color: var(--gainsboro);
+  font-size: 14px;
+}
+
+.member-item .role {
+  color: var(--citrine);
+  font-weight: 500;
+}

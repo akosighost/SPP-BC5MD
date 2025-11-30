@@ -463,5 +463,141 @@ if (copyModalBtn) {
   });
 }
 
+/*-----------------------------------*\
+ * #ABOUT FILM POPUP LOGIC
+\*-----------------------------------*/
+
+// 1. Select Elements
+const aboutLink = document.getElementById('about-film-link');
+const aboutModal = document.getElementById('about-modal-overlay');
+const closeAboutBtn = document.getElementById('close-about-btn');
+
+// 2. Open Modal Function
+if (aboutLink && aboutModal) {
+  aboutLink.addEventListener('click', function(e) {
+    e.preventDefault(); // Stop page from jumping to top
+    aboutModal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Stop background scroll
+  });
+}
+
+// 3. Close Modal Function (X button)
+if (closeAboutBtn) {
+  closeAboutBtn.addEventListener('click', function() {
+    aboutModal.classList.remove('active');
+    document.body.style.overflow = 'visible';
+  });
+}
+
+// 4. Close when clicking background
+if (aboutModal) {
+  aboutModal.addEventListener('click', function(e) {
+    if (e.target === aboutModal) {
+      aboutModal.classList.remove('active');
+      document.body.style.overflow = 'visible';
+    }
+  });
+}
+
+
+/*-----------------------------------*\
+ * #REFERENCES POPUP LOGIC
+\*-----------------------------------*/
+
+// 1. Select Elements
+const refsLink = document.getElementById('references-link');
+const refsModal = document.getElementById('references-modal-overlay');
+const closeRefsBtn = document.getElementById('close-references-btn');
+
+// 2. Open Modal Function
+if (refsLink && refsModal) {
+  refsLink.addEventListener('click', function(e) {
+    e.preventDefault(); 
+    refsModal.classList.add('active');
+    document.body.style.overflow = 'hidden'; 
+  });
+}
+
+// 3. Close Modal Function (X button)
+if (closeRefsBtn) {
+  closeRefsBtn.addEventListener('click', function() {
+    refsModal.classList.remove('active');
+    document.body.style.overflow = 'visible';
+  });
+}
+
+// 4. Close when clicking background
+if (refsModal) {
+  refsModal.addEventListener('click', function(e) {
+    if (e.target === refsModal) {
+      refsModal.classList.remove('active');
+      document.body.style.overflow = 'visible';
+    }
+  });
+}
+
+/*-----------------------------------*\
+ * #MEMBERS POPUP LOGIC
+\*-----------------------------------*/
+
+// 1. Select Elements
+const memLink = document.getElementById('members-link');
+const memModal = document.getElementById('members-modal-overlay');
+const closeMemBtn = document.getElementById('close-members-btn');
+
+// 2. Open Modal Function
+if (memLink && memModal) {
+  memLink.addEventListener('click', function(e) {
+    e.preventDefault(); 
+    memModal.classList.add('active');
+    document.body.style.overflow = 'hidden'; 
+  });
+}
+
+// 3. Close Modal Function (X button)
+if (closeMemBtn) {
+  closeMemBtn.addEventListener('click', function() {
+    memModal.classList.remove('active');
+    document.body.style.overflow = 'visible';
+  });
+}
+
+// 4. Close when clicking background
+if (memModal) {
+  memModal.addEventListener('click', function(e) {
+    if (e.target === memModal) {
+      memModal.classList.remove('active');
+      document.body.style.overflow = 'visible';
+    }
+  });
+}
+
+
 // Run on load
 window.addEventListener('load', initReviewActions);
+
+
+
+/*-----------------------------------*\
+ * #DOWNLOAD BUTTON CHECKER
+\*-----------------------------------*/
+
+function initDownloadCheck() {
+  // Select the service button (and any other download buttons you want to check)
+  const downloadBtns = document.querySelectorAll('.service-btn, .download-btn');
+
+  downloadBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const link = this.getAttribute('href');
+
+      // Check if the link is missing, empty, or just a placeholder '#'
+      if (!link || link === '#' || link === 'javascript:void(0)') {
+        e.preventDefault(); // Stop the browser from doing anything
+        alert("No link available"); // Show the popup message
+      }
+    });
+  });
+}
+
+// Run on load
+window.addEventListener('load', initDownloadCheck);

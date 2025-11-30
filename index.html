@@ -88,21 +88,16 @@
           </li>
 
           <li>
-            <a href="#" class="navbar-link">Movie</a>
+            <a href="#" class="navbar-link" id="about-film-link">About film</a>
           </li>
 
           <li>
-            <a href="#" class="navbar-link">Tv Show</a>
+            <a href="#" class="navbar-link" id="references-link">References</a>
           </li>
 
           <li>
-            <a href="#" class="navbar-link">Web Series</a>
+            <a href="#" class="navbar-link" id="members-link">About Us</a>
           </li>
-
-          <li>
-            <a href="#" class="navbar-link">Pricing</a>
-          </li>
-
         </ul>
 
         <ul class="navbar-social-list">
@@ -279,7 +274,7 @@
     </div>
 
     <div class="review-grid">
-      <div class="review-card card-blue" data-rating="5" data-review-file="yesha.txt">
+      <div class="review-card card-blue" data-rating="4" data-review-file="yesha.txt">
         <div class="review-header">
           <div class="avatar"><img src="./assets/review-photos/yesha.jpg" alt="User"></div>
           <div class="user-info">
@@ -597,10 +592,10 @@
     <img src="./assets/images/bf.jpg" alt="Die Beautiful - HD 4k resolution">
   </figure>
 
-  <a href="https://github.com/akosighost/NO-IMAGE/raw/main/IMG_20250417_195824.jpg" target="_blank" class="service-btn">
-  <span>Download</span>
-  <ion-icon name="download-outline"></ion-icon>
-</a>
+  <a href="#" class="service-btn" download>
+    <span>Download</span>
+    <ion-icon name="download-outline"></ion-icon>
+  </a>
 </div>
 
           <div class="service-content">
@@ -671,41 +666,12 @@
     <div class="footer-top">
       <div class="container">
 
-        <div class="footer-brand-wrapper">
-
-          <a href="./index.html" class="logo">
-            <img src="./assets/images/svg.svg" alt="Filmlane logo">
-          </a>
-
-          <ul class="footer-list">
-
-            <li>
-              <a href="./index.html" class="footer-link">Home</a>
-            </li>
-
-            <li>
-              <a href="#" class="footer-link">Movie</a>
-            </li>
-
-            <li>
-              <a href="#" class="footer-link">TV Show</a>
-            </li>
-
-            <li>
-              <a href="#" class="footer-link">Web Series</a>
-            </li>
-
-            <li>
-              <a href="#" class="footer-link">Pricing</a>
-            </li>
-
-          </ul>
-
-        </div>
-
         <div class="divider"></div>
 
         <div class="quicklink-wrapper">
+          <a href="./index.html" class="logo">
+            <img src="./assets/images/svg.svg" alt="Filmlane logo">
+          </a>
 
           <ul class="quicklink-list">
 
@@ -836,6 +802,166 @@
 
         <div class="modal-body">
           <p id="modal-review-text">Review content goes here...</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="review-modal-overlay" id="about-modal-overlay">
+    <div class="review-modal">
+      
+      <button class="close-review-btn" id="close-about-btn">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+
+      <div class="review-modal-content">
+        
+        <div class="modal-header">
+          <div class="modal-user-details">
+            <h3 style="font-size: 28px; color: var(--citrine); margin-bottom: 5px;">DIE BEAUTIFUL (2016)</h3>
+            <p style="color: var(--gainsboro); font-style: italic;">Directed by: Jun Robles Lana</p>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          
+          <h4 style="color: white; font-size: 18px; margin-bottom: 10px;">Synopsis:</h4>
+          <p style="color: var(--gainsboro); margin-bottom: 25px; line-height: 1.8;">
+            Trisha, a transgender woman and beauty queen, dies unexpectedly after winning a contest. Her last wish is to be made up as different celebrities during the seven nights of her wake. As her friends mourn and reminisce about her sudden passing after winning Binibining Gay Pilipinas, Trisha's life story plays out through a non-linear narrative. In these fragmented slices of life, we witness Trisha's journey from her traumatic childhood and high school life, to her tragedy and triumphs as a struggling beauty queen.
+          </p>
+
+          <h4 style="color: white; font-size: 18px; margin-bottom: 10px;">Background:</h4>
+          <p style="color: var(--gainsboro); margin-bottom: 15px; line-height: 1.8;">
+            Directed by Jun Robles Lana, “Die Beautiful” is one of the few movies that explores themes such as happiness, day-to-day challenges of being a transgender in the Philippines, as well as discrimination towards the queer community. The movie focuses on Trisha Echevarria, played by Paolo Ballesteros, a transgender woman who dreams of becoming a crowned beauty queen. When she finally won the title, Trisha unexpectedly died due to a ruptured aneurysm.
+          </p>
+          
+          <p style="color: var(--gainsboro); line-height: 1.8;">
+            Following Trisha’s story as she faces prejudice and challenges while discovering love, loyalty, and the courage to live happily on her own way, the film bravely raises the voice of the Philippines’ often suppressed transgender minority. It seeks to show her complexity, humanity, and dignity. The outstanding performance of Paolo Ballesteros as Trisha and Christian Bables as Barbs, which won Best Actor and Best Supporting Actor at the 2016 Metro Manila Film Festival, respectively, undoubtedly conveys the story’s nuanced and real emotions.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="review-modal-overlay" id="references-modal-overlay">
+    <div class="review-modal">
+      
+      <button class="close-review-btn" id="close-references-btn">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+
+      <div class="review-modal-content">
+        
+        <div class="modal-header">
+          <div class="modal-user-details">
+            <h3 style="font-size: 28px; color: var(--citrine); margin-bottom: 5px;">References</h3>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <ul style="color: var(--gainsboro); list-style: none; display: flex; flex-direction: column; gap: 20px;">
+            
+            <li>
+              <p style="margin-bottom: 5px;">Die Beautiful (2016). (2025, September 1). <em>Letterboxd</em>.</p>
+              <a href="https://letterboxd.com/film/die-beautiful/" target="_blank" style="color: var(--citrine); text-decoration: underline; word-break: break-all;">
+                https://letterboxd.com/film/die-beautiful/
+              </a>
+            </li>
+
+            <li>
+              <p style="margin-bottom: 5px;">Ph, E., & Ph, E. (2025, July 24). DIE BEAUTIFULLY: How Trisha Echevarria dazzled in life, and death? <em>Explained PH</em>.</p>
+              <a href="https://explained.ph/die-beautifully-how-trisha-echevarria-dazzled-in-life-and-death/" target="_blank" style="color: var(--citrine); text-decoration: underline; word-break: break-all;">
+                https://explained.ph/die-beautifully-how-trisha-echevarria-dazzled-in-life-and-death/
+              </a>
+            </li>
+
+            <li>
+              <p style="margin-bottom: 5px;">Prudente, J. (2024, September 7). Die Beautiful - Film review | SINEGANG.ph. <em>SINEGANG.ph</em>.</p>
+              <a href="https://www.sinegang.ph/filmreviews/die-beautiful-jp" target="_blank" style="color: var(--citrine); text-decoration: underline; word-break: break-all;">
+                https://www.sinegang.ph/filmreviews/die-beautiful-jp
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="review-modal-overlay" id="members-modal-overlay">
+    <div class="review-modal">
+      
+      <button class="close-review-btn" id="close-members-btn">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+
+      <div class="review-modal-content">
+        
+        <div class="modal-header">
+          <div class="modal-user-details">
+            <h3 style="font-size: 28px; color: var(--citrine); margin-bottom: 5px;">About Us / Members</h3>
+            <p style="color: var(--gainsboro);">BC5MD Group 1</p>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="members-grid">
+            
+            <div class="member-item">
+              <h4>Abella, John Paul</h4>
+              <p>BC5MD <span class="role">| Leader</span></p>
+            </div>
+
+            <div class="member-item">
+              <h4>Alde, Dennis</h4>
+              <p>BC5MD <span class="role">| Siraulo</span></p>
+            </div>
+
+            <div class="member-item">
+              <h4>Aquino, Adrian Nico</h4>
+              <p>BC5MD</p>
+            </div>
+
+            <div class="member-item">
+              <h4>Baluarte, Princes Mae</h4>
+              <p>BC5MD <span class="role">| Design</span></p>
+            </div>
+
+            <div class="member-item">
+              <h4>Co, Kylene</h4>
+              <p>BC5MD</p>
+            </div>
+
+            <div class="member-item">
+              <h4>Encio, King Acel</h4>
+              <p>BC5MD</p>
+            </div>
+
+            <div class="member-item">
+              <h4>Escobar, Yeshalyn</h4>
+              <p>BC5MD</p>
+            </div>
+
+            <div class="member-item">
+              <h4>Magalang, Joanna</h4>
+              <p>BC5MD</p>
+            </div>
+
+            <div class="member-item">
+              <h4>Natividad, John Rey</h4>
+              <p>BC5MD <span class="role">| Website Developer (VSCODE)</span></p>
+            </div>
+
+            <div class="member-item">
+              <h4>Villar, Joehanne Marguirite</h4>
+              <p>BC5MD <span class="role">| Researcher</span></p>
+            </div>
+
+          </div>
         </div>
       </div>
 
