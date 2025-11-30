@@ -288,11 +288,26 @@
               <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
               <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
               <ion-icon name="star"></ion-icon>
+              
             </div>
           </div>
         </div>
         <p class="review-text">Loading review...</p>
-        <button class="see-more-btn">See More</button>
+
+<div class="card-footer">
+  
+  <button class="see-more-btn">See More</button>
+
+  <div class="card-actions">
+    <button class="action-btn copy-btn" title="Copy Review">
+      <ion-icon name="copy-outline"></ion-icon>
+    </button>
+    <button class="action-btn share-btn" title="Share Review">
+      <ion-icon name="share-social-outline"></ion-icon>
+    </button>
+  </div>
+
+</div>
       </div>
 
       <div class="review-card card-green" data-rating="4">
@@ -536,21 +551,52 @@
 
   </footer>
 
+  <div class="share-modal-overlay" id="share-modal-overlay">
+    <div class="share-modal">
+      
+      <div class="share-header">
+        <h3>Share</h3>
+        <button class="close-share-btn" onclick="toggleShareModal(false)">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+      </div>
+
+      <div class="share-options">
+        <a href="#" target="_blank" class="social-btn facebook" id="s-fb">
+          <div class="icon-box"><ion-icon name="logo-facebook"></ion-icon></div>
+          <span>Facebook</span>
+        </a>
+        <a href="#" target="_blank" class="social-btn twitter" id="s-tw">
+          <div class="icon-box"><ion-icon name="logo-twitter"></ion-icon></div>
+          <span>X</span>
+        </a>
+        <a href="#" target="_blank" class="social-btn whatsapp" id="s-wa">
+          <div class="icon-box"><ion-icon name="logo-whatsapp"></ion-icon></div>
+          <span>WhatsApp</span>
+        </a>
+        <a href="#" target="_blank" class="social-btn pinterest" id="s-pin">
+          <div class="icon-box"><ion-icon name="logo-pinterest"></ion-icon></div>
+          <span>Pinterest</span>
+        </a>
+        <a href="#" class="social-btn email" id="s-mail">
+          <div class="icon-box"><ion-icon name="mail-outline"></ion-icon></div>
+          <span>Email</span>
+        </a>
+      </div>
+
+      <div class="link-copier">
+        <input type="text" id="share-link-input" readonly value="https://filmlane.com">
+        <button class="copy-modal-btn" id="copy-modal-btn">Copy</button>
+      </div>
+
+    </div>
+  </div>
   <a href="#top" class="go-top" data-go-top>
     <ion-icon name="chevron-up"></ion-icon>
   </a>
-
-  <!-- 
-    - custom js link
-  -->
+  
   <script src="./assets/js/script.js"></script>
-
-  <!-- 
-    - ionicon link
-  -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
 </body>
-
 </html>

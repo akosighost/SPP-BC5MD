@@ -269,3 +269,96 @@ function loadExternalReviews() {
 
 // Run this function when the page loads
 window.addEventListener('load', loadExternalReviews);
+
+/*-----------------------------------*\
+ * #CUSTOM SHARE MODAL LOGIC
+\*-----------------------------------*/
+
+// Variables for the Modal
+const shareModal = document.getElementById('share-modal-overlay');
+const shareInput = document.getElementById('share-link-input');
+const copyModalBtn = document.getElementById('copy-modal-btn');
+
+// Social Link Elements
+const sFb = document.getElementById('s-fb');
+const sTw = document.getElementById('s-tw');
+const sWa = document.getElementById('s-wa');
+const sPin = document.getElementById('s-pin');
+const sMail = document.getElementById('s-mail');
+
+// Toggle Modal Visibility
+function toggleShareModal(show) {
+  if (show) {
+    shareModal.classList.add('active');
+  } else {
+    shareModal.classList.remove('active');
+  }
+}
+
+// Close modal when clicking outside the box
+shareModal.addEventListener('click', (e) => {
+  if (e.target === shareModal) toggleShareModal(false);
+});
+
+// Update the "Action Buttons" Logic
+function initReviewActions() {
+  const copyBtns = document.querySelectorAll('.copy-btn');
+  const shareBtns = document.querySelectorAll('.share-btn');
+
+  // 1. SIMPLE COPY BUTTON (On the card itself)
+  copyBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const card = this.closest('.review-card');
+      const text = card.querySelector('.review-text').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const icon = this.querySelector('ion-icon');
+        icon.setAttribute('name', 'checkmark-outline');
+        setTimeout(() => icon.setAttribute('name', 'copy-outline'), 2000);
+      });
+    });
+  });
+
+  // 2. SHARE BUTTON (Opens the new Modal)
+  shareBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const card = this.closest('.review-card');
+      const text = card.querySelector('.review-text').textContent;
+      
+      // Get current page URL
+      const url = window.location.href; 
+      
+      // Set the input value in the modal
+      shareInput.value = url;
+
+      // Update Social Links dynamically
+      const msg = encodeURIComponent(`Check out this review: "${text.substring(0, 100)}..."`);
+      const encUrl = encodeURIComponent(url);
+
+      sFb.href = `https://www.facebook.com/sharer/sharer.php?u=${encUrl}`;
+      sTw.href = `https://twitter.com/intent/tweet?text=${msg}&url=${encUrl}`;
+      sWa.href = `https://api.whatsapp.com/send?text=${msg}%20${encUrl}`;
+      sPin.href = `https://pinterest.com/pin/create/button/?url=${encUrl}&description=${msg}`;
+      sMail.href = `mailto:?subject=Movie Review&body=${msg}%0A${encUrl}`;
+
+      // Open Modal
+      toggleShareModal(true);
+    });
+  });
+}
+
+// 3. COPY BUTTON INSIDE MODAL
+copyModalBtn.addEventListener('click', () => {
+  shareInput.select();
+  shareInput.setSelectionRange(0, 99999); // Mobile compatibility
+  navigator.clipboard.writeText(shareInput.value).then(() => {
+    copyModalBtn.textContent = "Copied!";
+    copyModalBtn.classList.add('copied');
+    setTimeout(() => {
+      copyModalBtn.textContent = "Copy";
+      copyModalBtn.classList.remove('copied');
+    }, 2000);
+  });
+});
+
+// Run on load
+window.addEventListener('load', initReviewActions);

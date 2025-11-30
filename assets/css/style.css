@@ -1915,3 +1915,196 @@ body.active { overflow: hidden; }
   opacity: 1;
   transform: translateY(0); 
 }
+
+/*-----------------------------------*\
+ * #REVIEW CARD ACTIONS
+\*-----------------------------------*/
+
+/* Wrapper for See More and Actions */
+.card-footer {
+  display: flex;
+  flex-direction: column; /* Stacks them vertically (Top to Bottom) */
+  align-items: flex-start; /* Aligns them to the Left */
+  gap: 15px; /* Adds the spacing you wanted! */
+  margin-top: 15px;
+  min-height: 24px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.action-btn {
+  color: var(--gainsboro);
+  background: rgba(255, 255, 255, 0.05); /* Subtle background */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-btn ion-icon {
+  font-size: 16px;
+  pointer-events: none; /* Ensures click hits the button, not the icon */
+}
+
+/* Hover Effects */
+.action-btn:hover {
+  background: var(--citrine);
+  color: var(--rich-black-fogra-29);
+  border-color: var(--citrine);
+  transform: translateY(-2px);
+}
+
+/* Click Animation Effect */
+.action-btn:active {
+  transform: scale(0.9);
+}
+
+/*-----------------------------------*\
+ * #CUSTOM SHARE MODAL
+\*-----------------------------------*/
+
+/* The Dark Background Overlay */
+.share-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+/* Show modal when active */
+.share-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* The Modal Box */
+.share-modal {
+  background: #212121; /* YouTube Dark Grey */
+  width: 90%;
+  max-width: 500px;
+  border-radius: 12px;
+  padding: 24px;
+  transform: translateY(20px);
+  transition: 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.share-modal-overlay.active .share-modal {
+  transform: translateY(0);
+}
+
+/* Header */
+.share-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  margin-bottom: 25px;
+}
+
+.share-header h3 { font-size: 18px; font-weight: 500; }
+
+.close-share-btn {
+  color: #aaa;
+  font-size: 26px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.close-share-btn:hover { color: white; }
+
+/* Social Icons Row */
+.share-options {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto; /* Scroll horizontally if needed */
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+.social-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 60px;
+  color: #aaa;
+  font-size: 12px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.social-btn:hover { color: white; transform: translateY(-3px); }
+
+/* Circle Icon Styles */
+.social-btn .icon-box {
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  transition: 0.2s;
+}
+
+/* Brand Colors */
+.facebook .icon-box { background: #1877f2; }
+.twitter .icon-box { background: #000; border: 1px solid #333; }
+.whatsapp .icon-box { background: #25d366; }
+.pinterest .icon-box { background: #bd081c; }
+.email .icon-box { background: #555; }
+
+/* Link Copier Box */
+.link-copier {
+  display: flex;
+  align-items: center;
+  background: #121212;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+#share-link-input {
+  background: transparent;
+  border: none;
+  color: #ccc;
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 14px;
+  outline: none;
+}
+
+.copy-modal-btn {
+  background: #3ea6ff; /* YouTube Blue */
+  color: #0f0f0f;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: 0.2s;
+}
+
+.copy-modal-btn:hover { background: #65b8ff; }
+.copy-modal-btn.copied { background: #2ba640; color: white; }
