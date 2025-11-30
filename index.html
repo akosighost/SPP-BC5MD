@@ -1128,6 +1128,29 @@
     </div>
   </div>
 
+  <!-- ========================================= -->
+  <!--  SEARCH MODAL (Hidden by default)         -->
+  <!-- ========================================= -->
+  <div class="review-modal-overlay" id="search-modal-overlay">
+    <div class="review-modal" style="max-width: 500px; padding: 0;">
+      
+      <div style="display: flex; align-items: center; padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <ion-icon name="search-outline" style="font-size: 24px; color: var(--citrine); margin-right: 10px;"></ion-icon>
+        <input type="text" id="search-input" placeholder="Search for a movie..." 
+               style="width: 100%; background: transparent; border: none; color: white; font-size: 18px; outline: none;">
+        <button id="close-search-btn" style="background: none; border: none; color: var(--gainsboro); font-size: 24px; cursor: pointer;">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+      </div>
+
+      <div class="modal-body" style="padding: 20px; max-height: 300px; overflow-y: auto;">
+        <p id="search-status" style="color: var(--gainsboro); text-align: center; font-size: 14px;">Type to search...</p>
+        <!-- Results will appear here dynamically if needed, or we filter the main page -->
+      </div>
+
+    </div>
+  </div>
+
 
   <a href="#top" class="go-top" data-go-top>
     <ion-icon name="chevron-up"></ion-icon>

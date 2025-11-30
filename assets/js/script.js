@@ -946,3 +946,76 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+/*-----------------------------------*\
+ * #SEARCH FUNCTIONALITY
+\*-----------------------------------*/
+
+document.addEventListener('DOMContentLoaded', function() {
+  const searchBtn = document.querySelector('.search-btn');
+  const searchModal = document.getElementById('search-modal-overlay');
+  const searchInput = document.getElementById('search-input');
+  const closeSearchBtn = document.getElementById('close-search-btn');
+  const searchStatus = document.getElementById('search-status');
+  
+  // All movie cards on the page
+  const allMovieCards = document.querySelectorAll('.movie-card');
+
+  // Open Search
+  if (searchBtn && searchModal) {
+    searchBtn.addEventListener('click', () => {
+      searchModal.classList.add('active');
+      searchInput.focus(); // Auto focus on input
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  // Close Search
+  function closeSearch() {
+    searchModal.classList.remove('active');
+    document.body.style.overflow = 'visible';
+    // Optional: Reset hidden movies
+    allMovieCards.forEach(card => card.closest('li').style.display = 'block');
+  }
+
+  if (closeSearchBtn) closeSearchBtn.addEventListener('click', closeSearch);
+  
+  if (searchModal) {
+    searchModal.addEventListener('click', (e) => {
+      if (e.target === searchModal) closeSearch();
+    });
+  }
+
+  // Real-time Filter Logic
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      const query = this.value.toLowerCase().trim();
+      let matchCount = 0;
+
+      if (query === '') {
+        searchStatus.textContent = "Type to search...";
+        // Reset all
+        allMovieCards.forEach(card => card.closest('li').style.display = 'block');
+        return;
+      }
+
+      allMovieCards.forEach(card => {
+        const title = card.querySelector('.card-title').textContent.toLowerCase();
+        const parentLi = card.closest('li');
+
+        if (title.includes(query)) {
+          parentLi.style.display = 'block'; // Show
+          matchCount++;
+        } else {
+          parentLi.style.display = 'none'; // Hide
+        }
+      });
+
+      if (matchCount === 0) {
+        searchStatus.textContent = `No movies found for "${query}"`;
+      } else {
+        searchStatus.textContent = `Found ${matchCount} matches. Close this box to see them.`;
+      }
+    });
+  }
+});
