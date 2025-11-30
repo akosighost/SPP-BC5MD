@@ -274,54 +274,176 @@ window.addEventListener('load', loadExternalReviews);
  * #REVIEW POPUP MODAL LOGIC
 \*-----------------------------------*/
 
-const reviewModalOverlay = document.getElementById('review-modal-overlay');
-const modalUserImg = document.getElementById('modal-user-img');
-const modalUserName = document.getElementById('modal-user-name');
-const modalUserRating = document.getElementById('modal-user-rating');
-const modalReviewText = document.getElementById('modal-review-text');
+/*-----------------------------------*\
+ * #REVIEW POPUP MODAL LOGIC
+\*-----------------------------------*/
 
-// Function to open/close modal
-function toggleReviewModal(show) {
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // Define variables INSIDE this function so we know HTML is ready
+  const reviewModalOverlay = document.getElementById('review-modal-overlay');
+  const modalUserImg = document.getElementById('modal-user-img');
+  const modalUserName = document.getElementById('modal-user-name');
+  const modalUserRating = document.getElementById('modal-user-rating');
+  const modalReviewText = document.getElementById('modal-review-text');
+  const closeReviewBtn = document.querySelector('.close-review-btn');
+
+  // Safety Check: If modal doesn't exist, stop to prevent errors
+  if (!reviewModalOverlay) return;
+
+  // Function to open/close modal
+  function toggleReviewModal(show) {
+    if (show) {
+      reviewModalOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden'; 
+    } else {
+      reviewModalOverlay.classList.remove('active');
+      document.body.style.overflow = 'visible'; 
+    }
+  }
+
+  // Close when clicking outside
+  reviewModalOverlay.addEventListener('click', (e) => {
+    if (e.target === reviewModalOverlay) toggleReviewModal(false);
+  });
+
+  // Close when clicking the X button
+  if (closeReviewBtn) {
+    closeReviewBtn.addEventListener('click', () => toggleReviewModal(false));
+  }
+
+  // Initialize Expand Buttons
+  function initExpandButtons() {
+    const expandBtns = document.querySelectorAll('.expand-btn');
+
+    expandBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const card = this.closest('.review-card');
+        
+        // Extract Data
+        const imgSrc = card.querySelector('.avatar img').src;
+        const name = card.querySelector('.username').textContent;
+        const ratingHtml = card.querySelector('.rating-wrapper').innerHTML;
+        const fullText = card.querySelector('.review-text').textContent;
+
+        // Populate Modal
+        if(modalUserImg) modalUserImg.src = imgSrc;
+        if(modalUserName) modalUserName.textContent = name;
+        if(modalUserRating) modalUserRating.innerHTML = ratingHtml;
+        if(modalReviewText) modalReviewText.textContent = fullText;
+
+        // Show Modal
+        toggleReviewModal(true);
+      });
+    });
+  }
+
+  // Run initialization
+  initExpandButtons();
+});
+
+/*-----------------------------------*\
+ * #CUSTOM SHARE MODAL LOGIC
+\*-----------------------------------*/
+
+// Variables for the Share Modal
+const shareModal = document.getElementById('share-modal-overlay');
+const shareInput = document.getElementById('share-link-input');
+const copyModalBtn = document.getElementById('copy-modal-btn');
+
+// Social Link Elements
+const sFb = document.getElementById('s-fb');
+const sTw = document.getElementById('s-tw');
+const sWa = document.getElementById('s-wa');
+const sPin = document.getElementById('s-pin');
+const sMail = document.getElementById('s-mail');
+
+// Toggle Modal Visibility (Required for the Close Button X)
+function toggleShareModal(show) {
   if (show) {
-    reviewModalOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Stop background scrolling
+    shareModal.classList.add('active');
   } else {
-    reviewModalOverlay.classList.remove('active');
-    document.body.style.overflow = 'visible'; // Restore scrolling
+    shareModal.classList.remove('active');
   }
 }
 
-// Close when clicking outside
-reviewModalOverlay.addEventListener('click', (e) => {
-  if (e.target === reviewModalOverlay) toggleReviewModal(false);
-});
+// Close modal when clicking outside the box
+if (shareModal) {
+  shareModal.addEventListener('click', (e) => {
+    if (e.target === shareModal) toggleShareModal(false);
+  });
+}
 
-// Initialize Expand Buttons
-function initExpandButtons() {
-  const expandBtns = document.querySelectorAll('.expand-btn');
+// Initialize Share & Copy Actions
+function initReviewActions() {
+  const copyBtns = document.querySelectorAll('.copy-btn');
+  const shareBtns = document.querySelectorAll('.share-btn');
 
-  expandBtns.forEach(btn => {
+  // 1. SIMPLE COPY BUTTON (On the card itself)
+  copyBtns.forEach(btn => {
     btn.addEventListener('click', function() {
-      // 1. Find the parent card
       const card = this.closest('.review-card');
+      // Fallback: if review text is loading, don't copy
+      const textEl = card.querySelector('.review-text');
+      if (!textEl) return;
+      
+      const text = textEl.textContent;
+      
+      // Use Clipboard API
+      navigator.clipboard.writeText(text).then(() => {
+        const icon = this.querySelector('ion-icon');
+        const originalIcon = icon.getAttribute('name');
+        
+        // Visual Feedback
+        icon.setAttribute('name', 'checkmark-outline');
+        setTimeout(() => icon.setAttribute('name', originalIcon), 2000);
+      }).catch(err => console.error('Copy failed:', err));
+    });
+  });
 
-      // 2. Extract Data from the card
-      const imgSrc = card.querySelector('.avatar img').src;
-      const name = card.querySelector('.username').textContent;
-      const ratingHtml = card.querySelector('.rating-wrapper').innerHTML;
-      const fullText = card.querySelector('.review-text').textContent;
+  // 2. SHARE BUTTON (Opens the Modal)
+  shareBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const card = this.closest('.review-card');
+      const text = card.querySelector('.review-text').textContent;
+      
+      // Get current page URL
+      const url = window.location.href; 
+      
+      // Set the input value in the modal
+      if (shareInput) shareInput.value = url;
 
-      // 3. Populate the Modal
-      modalUserImg.src = imgSrc;
-      modalUserName.textContent = name;
-      modalUserRating.innerHTML = ratingHtml;
-      modalReviewText.textContent = fullText;
+      // Update Social Links dynamically
+      const msg = encodeURIComponent(`Check out this review: "${text.substring(0, 100)}..."`);
+      const encUrl = encodeURIComponent(url);
 
-      // 4. Show Modal
-      toggleReviewModal(true);
+      if(sFb) sFb.href = `https://www.facebook.com/sharer/sharer.php?u=${encUrl}`;
+      if(sTw) sTw.href = `https://twitter.com/intent/tweet?text=${msg}&url=${encUrl}`;
+      if(sWa) sWa.href = `https://api.whatsapp.com/send?text=${msg}%20${encUrl}`;
+      if(sPin) sPin.href = `https://pinterest.com/pin/create/button/?url=${encUrl}&description=${msg}`;
+      if(sMail) sMail.href = `mailto:?subject=Movie Review&body=${msg}%0A${encUrl}`;
+
+      // Open Modal
+      toggleShareModal(true);
     });
   });
 }
 
-// Add this to your existing load event or run it:
-window.addEventListener('load', initExpandButtons);
+// 3. COPY BUTTON INSIDE MODAL
+if (copyModalBtn) {
+  copyModalBtn.addEventListener('click', () => {
+    shareInput.select();
+    shareInput.setSelectionRange(0, 99999); // Mobile compatibility
+    navigator.clipboard.writeText(shareInput.value).then(() => {
+      copyModalBtn.textContent = "Copied!";
+      copyModalBtn.classList.add('copied');
+      setTimeout(() => {
+        copyModalBtn.textContent = "Copy";
+        copyModalBtn.classList.remove('copied');
+      }, 2000);
+    });
+  });
+}
+
+// Run on load
+window.addEventListener('load', initReviewActions);

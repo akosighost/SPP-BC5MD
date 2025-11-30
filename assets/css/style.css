@@ -2228,3 +2228,24 @@ body.active { overflow: hidden; }
   line-height: 1.8;
   white-space: pre-wrap; /* Preserves paragraphs */
 }
+
+/* Responsive Fix for Modals on Mobile */
+@media (max-width: 550px) {
+  .review-modal-content, 
+  .share-modal {
+    padding: 20px; /* Reduces padding so content fits better */
+  }
+
+  .modal-header {
+    gap: 15px; /* Brings avatar closer to text */
+  }
+
+  .modal-avatar {
+    width: 60px; /* Smaller avatar on phone */
+    height: 60px;
+  }
+
+  .modal-user-details h3 {
+    font-size: 20px; /* Smaller name text */
+  }
+}
