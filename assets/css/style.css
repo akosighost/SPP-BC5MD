@@ -2108,3 +2108,123 @@ body.active { overflow: hidden; }
 
 .copy-modal-btn:hover { background: #65b8ff; }
 .copy-modal-btn.copied { background: #2ba640; color: white; }
+
+/*-----------------------------------*\
+ * #REVIEW READING MODAL
+\*-----------------------------------*/
+
+.review-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85); /* Darker background for focus */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1100; /* Higher than share modal */
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.review-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.review-modal {
+  background: var(--rich-black-fogra-29);
+  border: 1px solid var(--gunmetal-1);
+  width: 90%;
+  max-width: 700px; /* Wider for reading */
+  max-height: 80vh; /* Prevents it from being too tall */
+  border-radius: 16px;
+  position: relative;
+  transform: scale(0.9);
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy pop effect */
+  display: flex;
+  flex-direction: column;
+}
+
+.review-modal-overlay.active .review-modal {
+  transform: scale(1);
+}
+
+/* Close Button */
+.close-review-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: var(--gainsboro);
+  font-size: 28px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+}
+.close-review-btn:hover { background: var(--citrine); color: var(--black); }
+
+/* Modal Content Layout */
+.review-modal-content {
+  padding: 40px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Header Section */
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.modal-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--citrine);
+}
+
+.modal-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.modal-user-details h3 {
+  color: var(--white);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.modal-rating {
+  display: flex;
+  gap: 3px;
+  color: var(--citrine);
+  font-size: 18px;
+}
+
+/* Scrollable Body */
+.modal-body {
+  overflow-y: auto; /* Enables scrolling for long text */
+  padding-right: 10px; /* Space for scrollbar */
+}
+
+/* Custom Scrollbar for Modal */
+.modal-body::-webkit-scrollbar { width: 8px; }
+.modal-body::-webkit-scrollbar-thumb { background: var(--gunmetal-2); border-radius: 10px; }
+
+#modal-review-text {
+  color: var(--gainsboro);
+  font-size: 16px;
+  line-height: 1.8;
+  white-space: pre-wrap; /* Preserves paragraphs */
+}

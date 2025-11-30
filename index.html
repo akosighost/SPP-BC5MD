@@ -299,13 +299,17 @@
   <button class="see-more-btn">See More</button>
 
   <div class="card-actions">
-    <button class="action-btn copy-btn" title="Copy Review">
-      <ion-icon name="copy-outline"></ion-icon>
-    </button>
-    <button class="action-btn share-btn" title="Share Review">
-      <ion-icon name="share-social-outline"></ion-icon>
-    </button>
-  </div>
+  <button class="action-btn expand-btn" title="Read Full Review">
+    <ion-icon name="expand-outline"></ion-icon>
+  </button>
+
+  <button class="action-btn copy-btn" title="Copy Review">
+    <ion-icon name="copy-outline"></ion-icon>
+  </button>
+  <button class="action-btn share-btn" title="Share Review">
+    <ion-icon name="share-social-outline"></ion-icon>
+  </button>
+</div>
 
 </div>
       </div>
@@ -591,10 +595,40 @@
 
     </div>
   </div>
+
+
+  <div class="review-modal-overlay" id="review-modal-overlay">
+    <div class="review-modal">
+      
+      <button class="close-review-btn" onclick="toggleReviewModal(false)">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+
+      <div class="review-modal-content">
+        <div class="modal-header">
+          <div class="modal-avatar">
+            <img src="" alt="User" id="modal-user-img">
+          </div>
+          <div class="modal-user-details">
+            <h3 id="modal-user-name">Username</h3>
+            <div class="modal-rating" id="modal-user-rating">
+              </div>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <p id="modal-review-text">Review content goes here...</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
   <a href="#top" class="go-top" data-go-top>
     <ion-icon name="chevron-up"></ion-icon>
   </a>
-  
+
   <script src="./assets/js/script.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

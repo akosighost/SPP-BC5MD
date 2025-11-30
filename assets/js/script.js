@@ -271,94 +271,57 @@ function loadExternalReviews() {
 window.addEventListener('load', loadExternalReviews);
 
 /*-----------------------------------*\
- * #CUSTOM SHARE MODAL LOGIC
+ * #REVIEW POPUP MODAL LOGIC
 \*-----------------------------------*/
 
-// Variables for the Modal
-const shareModal = document.getElementById('share-modal-overlay');
-const shareInput = document.getElementById('share-link-input');
-const copyModalBtn = document.getElementById('copy-modal-btn');
+const reviewModalOverlay = document.getElementById('review-modal-overlay');
+const modalUserImg = document.getElementById('modal-user-img');
+const modalUserName = document.getElementById('modal-user-name');
+const modalUserRating = document.getElementById('modal-user-rating');
+const modalReviewText = document.getElementById('modal-review-text');
 
-// Social Link Elements
-const sFb = document.getElementById('s-fb');
-const sTw = document.getElementById('s-tw');
-const sWa = document.getElementById('s-wa');
-const sPin = document.getElementById('s-pin');
-const sMail = document.getElementById('s-mail');
-
-// Toggle Modal Visibility
-function toggleShareModal(show) {
+// Function to open/close modal
+function toggleReviewModal(show) {
   if (show) {
-    shareModal.classList.add('active');
+    reviewModalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Stop background scrolling
   } else {
-    shareModal.classList.remove('active');
+    reviewModalOverlay.classList.remove('active');
+    document.body.style.overflow = 'visible'; // Restore scrolling
   }
 }
 
-// Close modal when clicking outside the box
-shareModal.addEventListener('click', (e) => {
-  if (e.target === shareModal) toggleShareModal(false);
+// Close when clicking outside
+reviewModalOverlay.addEventListener('click', (e) => {
+  if (e.target === reviewModalOverlay) toggleReviewModal(false);
 });
 
-// Update the "Action Buttons" Logic
-function initReviewActions() {
-  const copyBtns = document.querySelectorAll('.copy-btn');
-  const shareBtns = document.querySelectorAll('.share-btn');
+// Initialize Expand Buttons
+function initExpandButtons() {
+  const expandBtns = document.querySelectorAll('.expand-btn');
 
-  // 1. SIMPLE COPY BUTTON (On the card itself)
-  copyBtns.forEach(btn => {
+  expandBtns.forEach(btn => {
     btn.addEventListener('click', function() {
+      // 1. Find the parent card
       const card = this.closest('.review-card');
-      const text = card.querySelector('.review-text').textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        const icon = this.querySelector('ion-icon');
-        icon.setAttribute('name', 'checkmark-outline');
-        setTimeout(() => icon.setAttribute('name', 'copy-outline'), 2000);
-      });
-    });
-  });
 
-  // 2. SHARE BUTTON (Opens the new Modal)
-  shareBtns.forEach(btn => {
-    btn.addEventListener('click', function() {
-      const card = this.closest('.review-card');
-      const text = card.querySelector('.review-text').textContent;
-      
-      // Get current page URL
-      const url = window.location.href; 
-      
-      // Set the input value in the modal
-      shareInput.value = url;
+      // 2. Extract Data from the card
+      const imgSrc = card.querySelector('.avatar img').src;
+      const name = card.querySelector('.username').textContent;
+      const ratingHtml = card.querySelector('.rating-wrapper').innerHTML;
+      const fullText = card.querySelector('.review-text').textContent;
 
-      // Update Social Links dynamically
-      const msg = encodeURIComponent(`Check out this review: "${text.substring(0, 100)}..."`);
-      const encUrl = encodeURIComponent(url);
+      // 3. Populate the Modal
+      modalUserImg.src = imgSrc;
+      modalUserName.textContent = name;
+      modalUserRating.innerHTML = ratingHtml;
+      modalReviewText.textContent = fullText;
 
-      sFb.href = `https://www.facebook.com/sharer/sharer.php?u=${encUrl}`;
-      sTw.href = `https://twitter.com/intent/tweet?text=${msg}&url=${encUrl}`;
-      sWa.href = `https://api.whatsapp.com/send?text=${msg}%20${encUrl}`;
-      sPin.href = `https://pinterest.com/pin/create/button/?url=${encUrl}&description=${msg}`;
-      sMail.href = `mailto:?subject=Movie Review&body=${msg}%0A${encUrl}`;
-
-      // Open Modal
-      toggleShareModal(true);
+      // 4. Show Modal
+      toggleReviewModal(true);
     });
   });
 }
 
-// 3. COPY BUTTON INSIDE MODAL
-copyModalBtn.addEventListener('click', () => {
-  shareInput.select();
-  shareInput.setSelectionRange(0, 99999); // Mobile compatibility
-  navigator.clipboard.writeText(shareInput.value).then(() => {
-    copyModalBtn.textContent = "Copied!";
-    copyModalBtn.classList.add('copied');
-    setTimeout(() => {
-      copyModalBtn.textContent = "Copy";
-      copyModalBtn.classList.remove('copied');
-    }, 2000);
-  });
-});
-
-// Run on load
-window.addEventListener('load', initReviewActions);
+// Add this to your existing load event or run it:
+window.addEventListener('load', initExpandButtons);
