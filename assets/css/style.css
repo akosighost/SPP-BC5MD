@@ -489,32 +489,24 @@ body.active { overflow: hidden; }
   pointer-events: all;
 }
 
-
-
-
-
-/*-----------------------------------*\
- * #HERO
-\*-----------------------------------*/
-
 /*-----------------------------------*\
  * #HERO
 \*-----------------------------------*/
 
 .hero {
-  /* We use multiple backgrounds here. 
-     1. The first one is the gradient overlay (dark on left, lighter on right).
-     2. The second one is the actual image.
-     CSS layers them, so the gradient sits on top of the image.
-  */
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 20%, rgba(0, 0, 0, 0.4) 100%),
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 25%, rgba(0, 0, 0, 0.4) 100%),
               url("../images/bgnew.jpg") no-repeat;
   
   background-size: cover;
-  background-position: center;
-  min-height: 750px;
+  
+  /* CHANGE 1: Position 'right' shows the face on mobile */
+  background-position: right center; 
+  
+  /* CHANGE 2: Reduce height for mobile (optional, but looks better) */
+  min-height: 500px; 
   height: 100vh;
   max-height: 1000px;
+  
   display: flex;
   justify-content: flex-start;
   align-items: center;
