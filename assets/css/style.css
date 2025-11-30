@@ -602,34 +602,46 @@ body.active { overflow: hidden; }
   border-radius: 20px; 
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); 
   
-  /* THIS IS THE FIX: */
-  overflow: hidden; /* Clips the square image to fit the rounded corners */
+
 }
 
-.service-banner img { width: 100%; }
+.service-banner img { 
+  width: 100%; 
+  border-radius: 20px; /* Rounds the image directly */
+}
 
 .service-btn {
   position: absolute;
-  bottom: 0;
-  right: 86px;
+  
+  /* Position at the bottom center */
+  bottom: 20px; 
+  left: 50%;
+  transform: translateX(-50%); /* Centers the button perfectly */
+  
+  /* Style */
   background: var(--citrine);
   color: var(--rich-black-fogra-29);
   font-size: var(--fs-11);
+  font-weight: var(--fw-700);
   text-transform: uppercase;
-  font-weight: var(--fw-500);
-  letter-spacing: 5px;
+  letter-spacing: 2px;
   display: flex;
   align-items: center;
-  gap: 5px;
-  transform: rotate(0.25turn);
-  transform-origin: bottom right;
-  padding: 28px 35px;
-  border-radius: 6px;
+  gap: 10px;
+  padding: 15px 30px;
+  border-radius: 50px; /* Rounded pill shape */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Drop shadow for depth */
+  width: max-content; /* Only as wide as the text */
 }
 
 .service-btn ion-icon {
-  font-size: 30px;
-  transform: rotate(-0.25turn);
+  font-size: 20px;
+  transform: none; /* Removes the rotation icon had before */
+}
+
+.service-btn:hover {
+  transform: translateX(-50%) translateY(-5px); /* Floats up slightly on hover */
+  background: var(--white);
 }
 
 .service-subtitle {
