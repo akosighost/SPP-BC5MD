@@ -2254,10 +2254,14 @@ body.active { overflow: hidden; }
  * #MEMBERS MODAL GRID
 \*-----------------------------------*/
 
+/*-----------------------------------*\
+ * #MEMBERS MODAL GRID
+\*-----------------------------------*/
+
 .members-grid {
   display: grid;
   grid-template-columns: 1fr; /* 1 Column on mobile */
-  gap: 20px;
+  gap: 15px;
 }
 
 /* 2 Columns on Tablets/Desktop */
@@ -2270,31 +2274,57 @@ body.active { overflow: hidden; }
 .member-item {
   background: rgba(255, 255, 255, 0.05);
   padding: 15px;
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: 0.2s;
+  
+  /* Flexbox for Side-by-Side Layout */
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .member-item:hover {
   border-color: var(--citrine);
   background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
 }
 
-.member-item h4 {
+/* Avatar Circle */
+.member-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--citrine);
+  flex-shrink: 0; /* Prevents image from squishing */
+}
+
+.member-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Text Info */
+.member-info h4 {
   color: var(--white);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
+  line-height: 1.2;
 }
 
-.member-item p {
+.member-info p {
   color: var(--gainsboro);
-  font-size: 14px;
+  font-size: 13px;
+  margin: 0;
 }
 
 .member-item .role {
   color: var(--citrine);
   font-weight: 500;
+  font-size: 12px;
 }
 
 /*-----------------------------------*\
@@ -2359,4 +2389,88 @@ body.active { overflow: hidden; }
 .signin-submit-btn:hover {
   background: transparent;
   color: var(--citrine);
+}
+
+/*-----------------------------------*\
+ * #CUSTOM LANGUAGE DROPDOWN
+\*-----------------------------------*/
+
+.lang-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 5; /* Ensure it sits above other content */
+}
+
+/* The Button (EN v) */
+.lang-dropdown-btn {
+  background: transparent;
+  color: var(--white);
+  font-size: var(--fs-9);
+  font-weight: var(--fw-700);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.lang-dropdown-btn ion-icon {
+  font-size: 12px;
+  transition: transform 0.2s;
+}
+
+/* Rotate arrow when open */
+.lang-dropdown.active .lang-dropdown-btn ion-icon {
+  transform: rotate(180deg);
+}
+
+/* The List (Hidden by default) */
+.lang-dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: var(--gunmetal-2); /* Dark Grey Background */
+  border: 1px solid var(--gunmetal-1);
+  min-width: 60px;
+  border-radius: 4px;
+  padding: 5px 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  
+  /* Hiding Logic */
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.2s ease;
+}
+
+/* Show List when Active */
+.lang-dropdown.active .lang-dropdown-list {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(5px);
+}
+
+/* List Items */
+.lang-item {
+  color: var(--gainsboro);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.lang-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--citrine); /* Yellow on hover */
+}
+
+/* Highlight Selected Item */
+.lang-item.active {
+  color: var(--citrine);
+  font-weight: 700;
 }

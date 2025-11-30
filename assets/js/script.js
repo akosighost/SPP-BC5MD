@@ -728,3 +728,221 @@ function initDownloadCheck() {
 // Run on load
 window.addEventListener('load', initDownloadCheck);
 
+/*-----------------------------------*\
+ * #LANGUAGE DROPDOWN LOGIC
+\*-----------------------------------*/
+
+function initLanguageDropdown() {
+  const langToggle = document.getElementById('lang-toggle');
+  const langList = document.getElementById('lang-list');
+  const langContainer = document.querySelector('.lang-dropdown');
+  const langText = document.getElementById('current-lang-text');
+  const langItems = document.querySelectorAll('.lang-item');
+
+  // 1. Toggle Dropdown
+  if (langToggle) {
+    langToggle.addEventListener('click', (e) => {
+      e.stopPropagation(); // Stop click from reaching document
+      langContainer.classList.toggle('active');
+    });
+  }
+
+  // 2. Select Language
+  langItems.forEach(item => {
+    item.addEventListener('click', function() {
+      // Remove active class from all
+      langItems.forEach(i => i.classList.remove('active'));
+      // Add active to clicked
+      this.classList.add('active');
+      
+      // Update the button text (EN, AU, etc.)
+      langText.textContent = this.getAttribute('data-lang');
+      
+      // Close dropdown
+      langContainer.classList.remove('active');
+    });
+  });
+
+  // 3. Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (langContainer && !langContainer.contains(e.target)) {
+      langContainer.classList.remove('active');
+    }
+  });
+}
+
+// Run on load
+window.addEventListener('load', initLanguageDropdown);
+
+/*-----------------------------------*\
+ * #LANGUAGE TRANSLATION LOGIC
+\*-----------------------------------*/
+
+const translations = {
+  'EN': {
+    'home': 'Home',
+    'movie': 'Movie',
+    'tv_show': 'TV Show',
+    'web_series': 'Web Series',
+    'pricing': 'Pricing',
+    'about': 'About Film',
+    'references': 'References',
+    'members': 'Members',
+    'hero_subtitle': 'Movie Review',
+    'watch_now': 'Watch now',
+    'signin': 'Sign in'
+  },
+  'AU': {
+    'home': 'Home',
+    'movie': 'Flicks',
+    'tv_show': 'Telly',
+    'web_series': 'Web Series',
+    'pricing': 'Pricing',
+    'about': 'About Film',
+    'references': 'References',
+    'members': 'Mates',
+    'hero_subtitle': 'Movie Review',
+    'watch_now': 'Watch now',
+    'signin': 'Sign in'
+  },
+  'AR': {
+    'home': 'الرئيسية',
+    'movie': 'أفلام',
+    'tv_show': 'برامج تلفزيونية',
+    'web_series': 'مسلسلات ويب',
+    'pricing': 'الأسعار',
+    'about': 'عن الفيلم',
+    'references': 'المراجع',
+    'members': 'الأعضاء',
+    'hero_subtitle': 'مراجعة الفيلم',
+    'watch_now': 'شاهد الآن',
+    'signin': 'تسجيل الدخول'
+  },
+  'TU': {
+    'home': 'Ana Sayfa',
+    'movie': 'Film',
+    'tv_show': 'TV Şovları',
+    'web_series': 'Web Dizileri',
+    'pricing': 'Fiyatlandırma',
+    'about': 'Film Hakkında',
+    'references': 'Referanslar',
+    'members': 'Üyeler',
+    'hero_subtitle': 'Film İncelemesi',
+    'watch_now': 'Şimdi İzle',
+    'signin': 'Giriş Yap'
+  }
+};
+
+function changeLanguage(lang) {
+  // 1. Check if translations exist for this language
+  if (!translations[lang]) return;
+
+  // 2. Select all elements with data-i18n attribute
+  const elements = document.querySelectorAll('[data-i18n]');
+
+  // 3. Loop through and update text
+  elements.forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[lang][key]) {
+      el.textContent = translations[lang][key];
+    }
+  });
+
+  // 4. Handle Right-to-Left (RTL) for Arabic
+  if (lang === 'AR') {
+    document.body.setAttribute('dir', 'rtl');
+    document.documentElement.setAttribute('lang', 'ar');
+  } else {
+    document.body.setAttribute('dir', 'ltr');
+    document.documentElement.setAttribute('lang', 'en');
+  }
+}
+
+function initLanguageDropdown() {
+  const langToggle = document.getElementById('lang-toggle');
+  const langList = document.getElementById('lang-list');
+  const langContainer = document.querySelector('.lang-dropdown');
+  const langText = document.getElementById('current-lang-text');
+  const langItems = document.querySelectorAll('.lang-item');
+
+  // Toggle Dropdown
+  if (langToggle) {
+    langToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      langContainer.classList.toggle('active');
+    });
+  }
+
+  // Handle Selection
+  langItems.forEach(item => {
+    item.addEventListener('click', function() {
+      // Visual updates
+      langItems.forEach(i => i.classList.remove('active'));
+      this.classList.add('active');
+      
+      const selectedLang = this.getAttribute('data-lang');
+      langText.textContent = selectedLang;
+      
+      // CALL THE TRANSLATION FUNCTION HERE
+      changeLanguage(selectedLang);
+      
+      langContainer.classList.remove('active');
+    });
+  });
+
+  // Close on click outside
+  document.addEventListener('click', (e) => {
+    if (langContainer && !langContainer.contains(e.target)) {
+      langContainer.classList.remove('active');
+    }
+  });
+}
+
+window.addEventListener('load', initLanguageDropdown);
+
+/*-----------------------------------*\
+ * #SINGLE MEMBER POPUP LOGIC
+\*-----------------------------------*/
+
+document.addEventListener('DOMContentLoaded', function() {
+  
+  const detailModal = document.getElementById('member-detail-modal-overlay');
+  const detailImg = document.getElementById('detail-img');
+  const detailName = document.getElementById('detail-name');
+  const detailRole = document.getElementById('detail-role');
+  const closeDetailBtn = document.getElementById('close-detail-btn');
+
+  function openMemberDetail(imgSrc, name, role) {
+    if (!detailModal) return;
+    if(detailImg) detailImg.src = imgSrc;
+    if(detailName) detailName.textContent = name;
+    if(detailRole) detailRole.textContent = role.replace('|', '').trim();
+    detailModal.classList.add('active');
+  }
+
+  document.addEventListener('click', function(e) {
+    const memberItem = e.target.closest('.member-item');
+    if (memberItem) {
+      const img = memberItem.querySelector('img').src;
+      const name = memberItem.querySelector('h4').textContent;
+      const roleText = memberItem.querySelector('p').textContent;
+      const role = roleText.replace('BC5MD', '').trim(); 
+
+      openMemberDetail(img, name, role);
+    }
+  });
+
+  if (closeDetailBtn) {
+    closeDetailBtn.addEventListener('click', () => {
+      detailModal.classList.remove('active');
+    });
+  }
+
+  if (detailModal) {
+    detailModal.addEventListener('click', (e) => {
+      if (e.target === detailModal) {
+        detailModal.classList.remove('active');
+      }
+    });
+  }
+});

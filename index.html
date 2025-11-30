@@ -47,17 +47,24 @@
         </button>
 
         <div class="lang-wrapper">
-          <label for="language">
-            <ion-icon name="globe-outline"></ion-icon>
-          </label>
+  <label for="language">
+    <ion-icon name="globe-outline"></ion-icon>
+  </label>
 
-          <select name="language" id="language">
-            <option value="en">EN</option>
-            <option value="au">AU</option>
-            <option value="ar">AR</option>
-            <option value="tu">TU</option>
-          </select>
-        </div>
+  <div class="lang-dropdown">
+    <button class="lang-dropdown-btn" id="lang-toggle">
+      <span id="current-lang-text">EN</span>
+      <ion-icon name="chevron-down-outline"></ion-icon>
+    </button>
+
+    <ul class="lang-dropdown-list" id="lang-list">
+      <li class="lang-item active" data-lang="EN">EN</li>
+      <li class="lang-item" data-lang="AU">AU</li>
+      <li class="lang-item" data-lang="AR">AR</li>
+      <li class="lang-item" data-lang="TU">TU</li>
+    </ul>
+  </div>
+</div>
 
         <!-- Added id="signin-btn" -->
          <button class="btn btn-primary" id="signin-btn">Sign in</button>
@@ -89,15 +96,15 @@
           </li>
 
           <li>
-            <a href="#" class="navbar-link" id="about-film-link">About film</a>
+            <a href="#" class="navbar-link" id="about-film-link" data-i18n="about">About film</a>
           </li>
 
           <li>
-            <a href="#" class="navbar-link" id="references-link">References</a>
+            <a href="#" class="navbar-link" id="references-link" data-i18n="references">References</a>
           </li>
 
           <li>
-            <a href="#" class="navbar-link" id="members-link">About Us / Members</a>
+            <a href="#" class="navbar-link" id="members-link" data-i18n="members">About Us / Members</a>
           </li>
         </ul>
 
@@ -155,7 +162,7 @@
 
           <div class="hero-content">
 
-            <p class="hero-subtitle">Movie Review</p>
+            <p class="hero-subtitle">Movie Reviewer</p>
 
             <h1 class="h1 hero-title">
               <p></p> Die Beautiful
@@ -215,7 +222,7 @@
             <div class="flex-wrapper">
               <div class="title-wrapper">
                 <p class="section-subtitle">Community</p>
-                <h2 class="h2 section-title">Movie Reviews</h2>
+                <h2 class="h2 section-title">Movie Reviewers</h2>
               </div>
               <ul class="filter-list">
                 <li>
@@ -581,10 +588,7 @@
     </div>
   </div>
 </section>
-
-      <!-- 
-        - #SERVICE
-      -->
+      <!--- #SERVICE -->
 
       <section class="service">
         <div class="container">
@@ -896,57 +900,117 @@
         <div class="modal-body">
           <div class="members-grid">
             
-            <div class="member-item">
-              <h4>Abella, John Paul</h4>
-              <p>BC5MD <span class="role">| Leader</span></p>
-            </div>
+  <!-- Member 1 -->
+  <div class="member-item">
+    <div class="member-avatar">
+      <img src="./assets/review-photos/john paul.jpg" alt="John Paul">
+    </div>
+    <div class="member-info">
+      <h4>Abella, John Paul</h4>
+      <p>BC5MD <span class="role">| Leader</span></p>
+    </div>
+  </div>
 
-            <div class="member-item">
-              <h4>Alde, Dennis</h4>
-              <p>BC5MD <span class="role">| Siraulo</span></p>
-            </div>
+  <!-- Member 2 -->
+  <div class="member-item">
+    <div class="member-avatar">
+      <img src="./assets/review-photos/dennis.jpg" alt="Dennis">
+    </div>
+    <div class="member-info">
+      <h4>Alde, Dennis</h4>
+      <p>BC5MD <span class="role">| Movie Reviewer</span></p>
+    </div>
+  </div>
 
-            <div class="member-item">
-              <h4>Aquino, Adrian Nico</h4>
-              <p>BC5MD <span class="role">| Movie Review</span></p>
-            </div>
+  <!-- Member 3 -->
+  <div class="member-item">
+    <div class="member-avatar">
+      <img src="./assets/review-photos/adrian.jpg" alt="Adrian">
+    </div>
+    <div class="member-info">
+      <h4>Aquino, Adrian Nico</h4>
+      <p>BC5MD <span class="role">| Movie Reviewer</span></p>
+    </div>
+  </div>
 
-            <div class="member-item">
-              <h4>Baluarte, Princes Mae</h4>
-              <p>BC5MD <span class="role">| Design</span></p>
-            </div>
+  <!-- Member 4 -->
+  <div class="member-item">
+    <div class="member-avatar">
+      <img src="./assets/review-photos/princes.jpg" alt="Princes">
+    </div>
+    <div class="member-info">
+      <h4>Baluarte, Princes Mae</h4>
+      <p>BC5MD <span class="role">| Design</span></p>
+    </div>
+  </div>
 
-            <div class="member-item">
-              <h4>Co, Kylene</h4>
-              <p>BC5MD <span class="role">| Movie Review</span></p>
-            </div>
+  <!-- Member 5 -->
+  <div class="member-item">
+    <div class="member-avatar">
+      <img src="./assets/review-photos/kyleen.jpg" alt="Kyleen">
+    </div>
+    <div class="member-info">
+      <h4>Co, Kylene</h4>
+      <p>BC5MD <span class="role">| Movie Reviewer</span></p>
+    </div>
+  </div>
 
-            <div class="member-item">
-              <h4>Encio, King Acel</h4>
-              <p>BC5MD <span class="role">| Movie Review</span></p>
-            </div>
+  <!-- Member 6 -->
+  <div class="member-item">
+    <div class="member-avatar">
+      <img src="./assets/review-photos/king.jpg" alt="King">
+    </div>
+    <div class="member-info">
+      <h4>Encio, King Acel</h4>
+      <p>BC5MD <span class="role">| Movie Reviewer</span></p>
+    </div>
+  </div>
 
-            <div class="member-item">
-              <h4>Escobar, Yeshalyn</h4>
-              <p>BC5MD <span class="role">| Movie Review</span></p>
-            </div>
+  <!-- Member 7 -->
+  <div class="member-item">
+    <div class="member-avatar">
+      <img src="./assets/review-photos/yesha.jpg" alt="Yesha">
+    </div>
+    <div class="member-info">
+      <h4>Escobar, Yeshalyn</h4>
+      <p>BC5MD <span class="role">| Movie Reviewer</span></p>
+    </div>
+  </div>
 
-            <div class="member-item">
-              <h4>Magalang, Joanna</h4>
-              <p>BC5MD <span class="role">| Movie Review</span></p>
-            </div>
+  <!-- Member 8 -->
+  <div class="member-item">
+    <div class="member-avatar">
+      <img src="./assets/review-photos/no image.png" alt="Joanna">
+    </div>
+    <div class="member-info">
+      <h4>Magalang, Joanna</h4>
+      <p>BC5MD <span class="role">| Movie Reviewer</span></p>
+    </div>
+  </div>
 
-            <div class="member-item">
-              <h4>Natividad, John Rey</h4>
-              <p>BC5MD <span class="role">| Website Developer (VSCODE)</span></p>
-            </div>
+  <!-- Member 9 -->
+  <div class="member-item">
+    <div class="member-avatar">
+      <img src="./assets/review-photos/jhayr.jpg" alt="John Rey">
+    </div>
+    <div class="member-info">
+      <h4>Natividad, John Rey</h4>
+      <p>BC5MD <span class="role">| Website Developer (VSCODE)</span></p>
+    </div>
+  </div>
 
-            <div class="member-item">
-              <h4>Villar, Joehanne Marguirite</h4>
-              <p>BC5MD <span class="role">| Researcher</span></p>
-            </div>
+  <!-- Member 10 -->
+  <div class="member-item">
+    <div class="member-avatar">
+      <img src="./assets/review-photos/joehan.jpg" alt="Joehanne">
+    </div>
+    <div class="member-info">
+      <h4>Villar, Joehanne Marguirite</h4>
+      <p>BC5MD <span class="role">| Researcher</span></p>
+    </div>
+  </div>
 
-          </div>
+</div>
         </div>
       </div>
 
@@ -1029,6 +1093,36 @@
           <a href="#" style="color: var(--citrine); display: inline; font-weight: 600;">Sign Up</a>
         </p>
 
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!--  SINGLE MEMBER DETAIL MODAL               -->
+  <!-- ========================================= -->
+  <div class="review-modal-overlay" id="member-detail-modal-overlay" style="z-index: 1200;">
+    <div class="review-modal" style="max-width: 400px; text-align: center;">
+      
+      <button class="close-review-btn" id="close-detail-btn">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+
+      <div class="review-modal-content">
+        <div class="modal-body" style="display: flex; flex-direction: column; align-items: center; padding-top: 20px;">
+          
+          <div class="detail-avatar" style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 4px solid var(--citrine); margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.5);">
+            <img src="" alt="Member" id="detail-img" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+
+          <h3 id="detail-name" style="color: var(--white); font-size: 24px; margin-bottom: 5px;">Name</h3>
+          <p id="detail-role" style="color: var(--citrine); font-weight: 600; font-size: 16px; margin-bottom: 20px;">Role</p>
+          
+          <p style="color: var(--gainsboro); font-size: 14px; line-height: 1.6;">
+            BC5MD Group 1.
+          </p>
+
+        </div>
       </div>
 
     </div>
